@@ -1,12 +1,12 @@
 schemaVersion: 2.2.0
 metadata:
   name: huggingface
-attributes:
-  controller.devfile.io/devworkspace-config:
-    name: devworkspace-config
-    namespace: openshift-devspaces
-  controller.devfile.io/scc: container-build
-  controller.devfile.io/storage-type: per-workspace
+# attributes:
+  # controller.devfile.io/devworkspace-config:
+  #   name: devworkspace-config
+  #   namespace: openshift-devspaces
+  # controller.devfile.io/scc: container-build
+  # controller.devfile.io/storage-type: per-workspace
 projects:
   - name: huggingface
     git:
