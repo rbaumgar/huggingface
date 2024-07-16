@@ -4,7 +4,7 @@ metadata:
 attributes:
   controller.devfile.io/devworkspace-config:
     name: devworkspace-config
-    namespace: devspaces
+    namespace: openshift-devspaces
   controller.devfile.io/scc: container-build
   controller.devfile.io/storage-type: per-workspace
 projects:
@@ -17,9 +17,9 @@ projects:
 components:
   - attributes:
       container-overrides:
-        resources:
-          limits:
-            nvidia.com/gpu: '0'
+        resources: {}
+          # limits:
+          #   nvidia.com/gpu: '0'
       controller.devfile.io/merge-contribution: true
     container:
       image: quay.io/bkozdemb/udi-9
