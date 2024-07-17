@@ -22,18 +22,18 @@ components:
 
 commands:
   - exec:
-      commandLine: python -m venv .venv && . .venv/bin/activate && pip install pip -Uq && pip install -q -r requirements.txt
-      component: python
+      commandLine: pip install pip -U && pip install -r requirements.txt
+      component: tools
       group:
         kind: run
       label: Configure python
-      workingDir: ${PROJECTS_ROOT}/huggingface
-    id: run
+      workingDir: ${PROJECT_SOURCE}
+    id: install
   - id: run-application
     exec:
       label: "Run application"
       component: tools
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "python demo.py"
+      commandLine: "python sentiment_analysis.py"
       group:
         kind: run
