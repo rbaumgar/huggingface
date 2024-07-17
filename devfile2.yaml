@@ -1,0 +1,39 @@
+schemaVersion: 2.2.2
+metadata:
+  name: python-hello-world
+components:
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      volumeMounts:
+        - name: venv
+          path: /home/user/.venv
+        - name: cache
+          path: /home/user/.cache          
+      memoryLimit: 2048Mi
+      mountSources: true
+
+  - name: venv
+    volume:
+      size: 1G
+  - name: cache
+    volume:
+      size: 2G      
+
+commands:
+  - exec:
+      commandLine: python -m venv .venv && . .venv/bin/activate && pip install pip -Uq && pip install -q -r requirements.txt
+      component: python
+      group:
+        kind: run
+      label: Configure python
+      workingDir: ${PROJECTS_ROOT}/huggingface
+    id: run
+  - id: run-application
+    exec:
+      label: "Run application"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "python demo.py"
+      group:
+        kind: run
