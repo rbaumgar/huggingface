@@ -8,27 +8,22 @@ components:
       volumeMounts:
         - name: venv
           path: /home/user/.venv
-        - name: cache
-          path: /home/user/.cache          
       memoryLimit: 2048Mi
       mountSources: true
 
   - name: venv
     volume:
       size: 1G
-  - name: cache
-    volume:
-      size: 2G      
-
+   
 commands:
-  - exec:
+  - id: install
+    exec:
       commandLine: pip install pip -U && pip install -r requirements.txt
       component: tools
-      group:
-        kind: run
       label: Configure python
       workingDir: ${PROJECT_SOURCE}
-    id: install
+      group:
+        kind: run      
   - id: run-application
     exec:
       label: "Run application"
